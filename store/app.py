@@ -31,12 +31,13 @@ def get_path(path):
                            filenames)
 
         def get_url(filename):
-            abs_path_filename = config.dirname + "/" + path + filename
+            abs_path_filename = abs_path + "/" + filename
+            link = "/" + path + filename
             if os.path.isdir(abs_path_filename):
                 name = filename + "/"
             else:
                 name = filename
-            return Url(name=name, link=path + filename)
+            return Url(name=name, link=link)
         urls = map(get_url, filenames)
         return render_template("index.html", urls=urls)
     else:
