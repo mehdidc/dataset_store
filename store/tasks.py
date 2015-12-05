@@ -65,12 +65,13 @@ def get_mirrors():
 
 
 def build_content_(host):
-    return "{} {}".format(host.name, host.addr)
+    return "{} {} {}".format(host.name, host.addr, host.port)
 
 
 def get_from_content_(s):
-    name, addr = s.split(" ")
-    return Host(name=name, addr=addr)
+    name, addr, port = s.split(" ")
+    port = int(port)
+    return Host(name=name, addr=addr, port=port)
 
 
 def get_or_clone_stores_repo_(folder):
@@ -100,3 +101,8 @@ def get_myself_():
     return Host(name=helpers.get_host_name(),
                 addr=helpers.get_host_ip(),
                 port=config.port)
+
+@task
+def serve():
+    from app import app
+    app.run()
