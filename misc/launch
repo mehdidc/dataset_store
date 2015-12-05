@@ -1,0 +1,4 @@
+#!/bin/sh
+mkdir -p data
+sshfs cherti@lx2.lal.in2p3.fr:/exp/appstat/cherti/work/data data
+invoke serve --dirname=data --port=22222
