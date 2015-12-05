@@ -104,6 +104,9 @@ def get_myself_():
 
 
 @task
-def serve():
+def serve(host=config.host, port=config.port, dirname=config.dirname):
     from app import app
+    config.host = host
+    config.port = port
+    config.dirname = dirname
     app.run(host=config.host, port=config.port)
