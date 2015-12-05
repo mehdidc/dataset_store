@@ -102,7 +102,8 @@ def get_myself_():
                 addr=helpers.get_host_ip(),
                 port=config.port)
 
+
 @task
 def serve():
     from app import app
-    app.run()
+    app.run(host=config.host, port=config.port)
