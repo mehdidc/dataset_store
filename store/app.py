@@ -20,16 +20,23 @@ def index():
 
 @app.route('/<path:path>')
 def get_path(path):
-    path = os.path.join(config.dirname, path)
     abs_path = config.dirname + "/" + path
     if os.path.isdir(abs_path):
         if not path.endswith("/"):
             path += "/"
+
+        filenames = os.listdir(abs_path)
+        filenames = sorted(filenames, key=os.path.isdir)
         filenames = filter(file_pattern.search,
-                           os.listdir(abs_path))
+                           filenames)
 
         def get_url(filename):
-            return Url(name=filename, link=path + filename)
+            abs_path_filename = config.dirname + "/" + path + filename
+            if os.path.isdir(abs_path_filename):
+                name = filename + "/"
+            else:
+                name = filename
+            return Url(name=name, link=path + filename)
         urls = map(get_url, filenames)
         return render_template("index.html", urls=urls)
     else:
