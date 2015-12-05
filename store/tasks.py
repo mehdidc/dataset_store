@@ -79,6 +79,7 @@ def get_or_clone_stores_repo_(folder):
     git_repo = config.store_list_repo
     if os.path.exists(folder):
         repo = Repo(folder)
+        repo.remotes.origin.pull()
     else:
         repo = Repo.clone_from(git_repo,
                                folder,
