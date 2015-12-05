@@ -1,0 +1,2 @@
+dirname = '.'
+pattern = r'py$'
