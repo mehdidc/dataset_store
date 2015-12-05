@@ -9,7 +9,7 @@ import config
 
 
 Host = namedtuple('Host', ['name', 'addr', 'port'])
-stores_folder = "stores"
+stores_folder = os.path.join(os.getenv("HOME"), ".stores")
 list_filename = "list"
 
 
