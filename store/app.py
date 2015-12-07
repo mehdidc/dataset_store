@@ -43,6 +43,9 @@ def get_path(path):
                 name = filename
             return Url(name=name, link=link)
         urls = map(get_url, filenames)
+        link = "/" + os.path.dirname(path[0:-1])
+        back_url = Url(name="..", link=link)
+        urls = [back_url] + urls
         return render_template("index.html", urls=urls)
     else:
         return get_filename(abs_path)
