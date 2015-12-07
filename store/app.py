@@ -32,7 +32,8 @@ def get_path(path):
 
         def get_url(filename):
             abs_path_filename = abs_path + "/" + filename
-            link = "/" + path + filename
+            link = path + filename
+            print(link)
             if os.path.isdir(abs_path_filename):
                 name = filename + "/"
             else:
